@@ -1,21 +1,10 @@
-##installation of packages. run these codes if the packages are not installed already
-install.packages("tm") 
-install.packages("wordcloud")
-#install.packages("SnowballC")
-install.packages("topicmodels")
-install.packages("LDAvis")
-install.packages("dplyr")
-install.packages("stringi")
-install.packages("servr")
-
-##load all required packages
-library(tm)
-library(wordcloud)
-library(topicmodels)
-library(LDAvis)
-library(dplyr)
-library(stringi)
-library(servr)
+##installation of packages and loading all required packages.
+for (package in c('tm', 'wordcloud', 'topicmodels', 'LDAvis', 'dplyr', 'stringi', 'servr')) {
+  if (!require(package, character.only=T)) {
+    install.packages(package)
+    library(package, character.only=T)
+  }
+}
 
 #read csv file into data frame. change name of file when needed
 text.all <- read.csv("voc-comments.csv", header = TRUE, sep = ",")
